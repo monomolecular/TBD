@@ -24,8 +24,8 @@ public class ASCIIScreen implements Screen {
         // Loop through all the tiles on the screen...
         for (int x = 2; x < 70; x += 8) {
             for (int y = 2; y < 23; y++) {
-                int wx = x;
-                int wy = y;
+                // int wx = x;
+                // int wy = y;
 
                 if (asciiCode < 256) {
                     terminal.write(asciiCode + " - " + (char) asciiCode++, x, y, CharacterPanel.brightWhite);

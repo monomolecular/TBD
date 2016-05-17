@@ -60,7 +60,7 @@ public class CharacterPanel extends JPanel {
 
     /**
      * Gets the height, in pixels, of a character.
-     * @return
+     * @return charHeight which is the height of a character.
      */
     public int getCharHeight() {
         return charHeight;
@@ -224,7 +224,6 @@ public class CharacterPanel extends JPanel {
 
         // Create all the glyphs/tiles and load them into a hashmap.
         createTiles();
-        //loadCP437(1, 255);
 
         CharacterPanel.this.clear();
     }
@@ -332,8 +331,8 @@ public class CharacterPanel extends JPanel {
 
     /**
      * Clear the entire screen with the specified character and whatever the default foreground and background colors are.
-     * @param character  the character to write
-     * @return this for convenient chaining of method calls
+     * @param character the character to write
+     * @return this     for convenient chaining of method calls
      */
     public CharacterPanel clear(char character) {
         if (character < 0 || !glyphMap.containsKey(character))

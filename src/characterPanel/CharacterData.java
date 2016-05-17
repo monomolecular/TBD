@@ -1,5 +1,7 @@
 package characterPanel;
 
+import game.Tile;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.font.TextAttribute;
@@ -23,17 +25,41 @@ import static groovy.json.StringEscapeUtils.escapeJava;
 
 
 public class CharacterData {
-    // The following three variables were in the original CharacterData class which came with ASCIIPanel.
-    // ...and they don't seem to be used.
-    public char character;
-    public Color foregroundColor;
-    public Color backgroundColor;
 
     // Basic test main() to check things are working.
     public static void main(String[] argv) throws Exception {
 
-        BufferedImage test1 = createFontGlyph("\u263a", "DejaVu Sans Mono", 15, 0, true);    // 9786 = ☺ (Smiley FAce)
-        BufferedImage test2 = createFontGlyph("\u00a5", "DejaVu Sans Mono", 15, 0, true);    // 165 = ¥ (yen Symbol)
+        BufferedImage test1 = createFontGlyph("\u263a", "DejaVu Sans Mono", 15, 0, false);    // 9786 = ☺ (Smiley FAce)
+        BufferedImage test2 = createFontGlyph("\u00a5", "DejaVu Sans Mono", 15, 0, false);    // 165 = ¥ (yen Symbol)
+        BufferedImage test3 = createBitmapGlyph(Tile.solidBlock, false);
+    }
+
+    public static BufferedImage createBitmapGlyph(byte[] data, boolean debug) {
+        int[] colors = new int[256];
+        colors['*'] = 0xFFFFFFFF; // white
+        BufferedImage img = new BufferedImage(9,18,BufferedImage.TYPE_INT_ARGB);
+
+        if (debug) System.out.println("data.length: " + data.length);
+        for(int i = 0; i< data.length; i++)
+        {
+            img.setRGB(i%9,i/9,colors[data[i]]);
+            if (debug) System.out.println("color: " + colors[data[i]] + ", var i: " + i + ", i%9: " + i%9 + ", i/9: " + i/9);
+        }
+
+        if (debug) {
+
+            Instant timestamp = Instant.now();
+            Date date = Date.from(timestamp);
+            Format formatter = new SimpleDateFormat("YYYY-MM-dd_hh-mm-ss");
+
+            try {
+                ImageIO.write(img, "png", new File("Invented Glyph-"
+                        + formatter.format(date) + ".png"));
+            } catch (IOException eio) {
+                eio.printStackTrace();
+            }
+        }
+        return img;
     }
 
     /**
