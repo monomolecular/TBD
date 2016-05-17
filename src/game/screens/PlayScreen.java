@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static characterPanel.CharacterData.createBitmapGlyph;
 import static characterPanel.CharacterData.createFontGlyph;
 import static characterPanel.CharacterPanel.glyphMap;
 
@@ -71,11 +72,15 @@ public class PlayScreen implements Screen {
             glyphMap.put(character, img);
         }
 
+        // Replace the WALL tile with aa completely solid block.
+        glyphMap.put(Tile.WALL.glyph(), createBitmapGlyph(Tile.solidBlock, false));
+
         // Add glyphs for the basic alpha-numeric and punctuation characters.
         for (int i = 32; i <= 126; i++) {
             BufferedImage img = createFontGlyph(i, "DejaVu Sans Mono",15,0,false);
             glyphMap.put((char)i, img);
         }
+
     }
 
     /**

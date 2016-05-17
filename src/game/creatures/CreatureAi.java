@@ -115,7 +115,6 @@ public class CreatureAi {
 
         // Make sure creatures don't fight other's like them.
         if (other != null && other.glyph() == creature.glyph()) {
-            return;
         } else {
             creature.moveBy(mx, my, 0);
         }

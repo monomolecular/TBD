@@ -71,6 +71,26 @@ public enum Tile {
     CHAINMAILLE("Chainmaille", '\u005B', CharacterPanel.white, "It's got a little rust, but should offer some real protection."),
     PLATED_MAIL("Plated Mail", '\u005B', CharacterPanel.white, "This combination of chain and plate armor should really help.");
 
+    public static byte[] solidBlock = ("*********" + // 1
+            "*********" + // 2
+            "*********" + // 3
+            "*********" + // 4
+            "*********" + // 5
+            "*********" + // 6
+            "*********" + // 7
+            "*********" + // 8
+            "*********" + // 9
+            "*********" + // 10
+            "*********" + // 11
+            "*********" + // 12
+            "*********" + // 13
+            "*********" + // 14
+            "*********" + // 15
+            "*********" + // 16
+            "*********" + // 17
+            "*********"  // 18
+    ).getBytes();
+
     private String label;
     public String label() {
         return label;
